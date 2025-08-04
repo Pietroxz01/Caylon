@@ -4,14 +4,14 @@ var
   precos: vetor[1..50] de real
   anos, estoques: vetor[1..50] de inteiro
   i, N, ind, qtd, totalCarros: inteiro
-  total, parcial, desc, imposto: real
+  total, parcial, desc, imposto, valorDesc: real
 
 inicio
-  escreval("Qtd de carros p/ cadastrar (atÈ 50):")
+  escreval("Qtd de carros p/ cadastrar (at√© 50):")
   leia(N)
 
   se (N <= 0) ou (N > 50) entao
-    escreval("Qtd inv·lida!")
+    escreval("Qtd inv√°lida!")
     pare
   fimse
 
@@ -22,14 +22,14 @@ inicio
     escreval("Ano: ")
     leia(anos[i])
     enquanto (anos[i] < 1990) ou (anos[i] > 2025) faca
-      escreval("Ano inv·lido:")
+      escreval("Ano inv√°lido. Digite novamente:")
       leia(anos[i])
     fimenquanto
 
-    escreval("PreÁo (mÌn R$10.000): ")
+    escreval("Pre√ßo (m√≠n R$10.000): ")
     leia(precos[i])
     enquanto precos[i] < 10000 faca
-      escreval("PreÁo inv·lido:")
+      escreval("Pre√ßo inv√°lido. Digite novamente:")
       leia(precos[i])
     fimenquanto
 
@@ -41,18 +41,20 @@ inicio
   totalCarros <- 0
 
   repita
-    escreval("N∫ do carro (1 a ", N, ") ou 0 p/ sair:")
+    escreval("N¬∫ do carro (1 a ", N, ") ou 0 p/ sair:")
     leia(ind)
 
-    se ind > 0 e ind <= N entao
+    se (ind > 0) e (ind <= N) entao
       escreval("Qtd desejada:")
       leia(qtd)
 
       se qtd <= estoques[ind] entao
         desc <- 0
+
         se qtd > 2 entao
           desc <- desc + 0.05
         fimse
+
         se anos[ind] < 2025 entao
           desc <- desc + 0.10
         fimse
@@ -62,7 +64,8 @@ inicio
         totalCarros <- totalCarros + qtd
         estoques[ind] <- estoques[ind] - qtd
 
-        escreval("Compra ok! R$: ", parcial:2:2, " com ", desc * 100, "% de desconto.")
+        valorDesc <- desc * 100
+        escreval("Compra ok! R$: ", parcial:2:2, " com ", valorDesc:2:2, "% de desconto.")
       senao
         escreval("Estoque insuficiente.")
       fimse
@@ -77,5 +80,5 @@ inicio
   escreval("Total de carros: ", totalCarros)
   escreval("Subtotal: R$ ", total:2:2)
   escreval("Imposto de luxo: R$ ", imposto:2:2)
-  escreval("Total final: R$ ", total + imposto:2:2)
+  escreval("Total final: R$ ", (total + imposto):2:2)
 fimalgoritmo
