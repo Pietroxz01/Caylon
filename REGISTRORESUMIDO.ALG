@@ -5,11 +5,13 @@ var
   precos: vetor[1..50] de real
   anos: vetor[1..50] de inteiro
   estoques: vetor[1..50] de inteiro
+
   i: inteiro
   N: inteiro
   ind: inteiro
   qtd: inteiro
   totalCarros: inteiro
+
   total: real
   parcial: real
   desconto: real
@@ -75,9 +77,13 @@ inicio
         estoques[ind] <- estoques[ind] - qtd
 
         valorDesc <- desconto * 100
+
         escreval("Compra realizada com sucesso!")
-        escreval("Valor final: R$ ", parcial:2:2)
-        escreval("Desconto aplicado: ", valorDesc:2:2, "%")
+        escreva("Valor final: R$ ")
+        escreval(parcial:2:2)
+        escreva("Desconto aplicado: ")
+        escreval(valorDesc:2:2)
+        escreval("%")
       senao
         escreval("Estoque insuficiente.")
       fimse
@@ -91,8 +97,11 @@ inicio
 
   escreval("---------- RELATÓRIO FINAL ----------")
   escreval("Total de carros vendidos: ", totalCarros)
-  escreval("Subtotal: R$ ", total:2:2)
-  escreval("Imposto de luxo: R$ ", imposto:2:2)
-  escreval("Total final com imposto: R$ ", (total + imposto):2:2)
+  escreva("Subtotal: R$ ")
+  escreval(total:2:2)
+  escreva("Imposto de luxo: R$ ")
+  escreval(imposto:2:2)
+  escreva("Total final com imposto: R$ ")
+  escreval((total + imposto):2:2)
 
 fimalgoritmo
