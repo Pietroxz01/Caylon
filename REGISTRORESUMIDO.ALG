@@ -1,10 +1,20 @@
 algoritmo "registro_resumido"
+
 var
   modelos: vetor[1..50] de caractere
   precos: vetor[1..50] de real
-  anos, estoques: vetor[1..50] de inteiro
-  i, N, ind, qtd, totalCarros: inteiro
-  total, parcial, desc, imposto, valorDesc: real
+  anos: vetor[1..50] de inteiro
+  estoques: vetor[1..50] de inteiro
+  i: inteiro
+  N: inteiro
+  ind: inteiro
+  qtd: inteiro
+  totalCarros: inteiro
+  total: real
+  parcial: real
+  desconto: real
+  imposto: real
+  valorDesc: real
 
 inicio
   escreval("Qtd de carros p/ cadastrar (até 50):")
@@ -49,23 +59,25 @@ inicio
       leia(qtd)
 
       se qtd <= estoques[ind] entao
-        desc <- 0
+        desconto <- 0
 
         se qtd > 2 entao
-          desc <- desc + 0.05
+          desconto <- desconto + 0.05
         fimse
 
         se anos[ind] < 2025 entao
-          desc <- desc + 0.10
+          desconto <- desconto + 0.10
         fimse
 
-        parcial <- precos[ind] * qtd * (1 - desc)
+        parcial <- precos[ind] * qtd * (1 - desconto)
         total <- total + parcial
         totalCarros <- totalCarros + qtd
         estoques[ind] <- estoques[ind] - qtd
 
-        valorDesc <- desc * 100
-        escreval("Compra ok! R$: ", parcial:2:2, " com ", valorDesc:2:2, "% de desconto.")
+        valorDesc <- desconto * 100
+        escreval("Compra realizada com sucesso!")
+        escreval("Valor final: R$ ", parcial:2:2)
+        escreval("Desconto aplicado: ", valorDesc:2:2, "%")
       senao
         escreval("Estoque insuficiente.")
       fimse
@@ -77,8 +89,10 @@ inicio
     imposto <- total * 0.08
   fimse
 
-  escreval("Total de carros: ", totalCarros)
+  escreval("---------- RELATÓRIO FINAL ----------")
+  escreval("Total de carros vendidos: ", totalCarros)
   escreval("Subtotal: R$ ", total:2:2)
   escreval("Imposto de luxo: R$ ", imposto:2:2)
-  escreval("Total final: R$ ", (total + imposto):2:2)
+  escreval("Total final com imposto: R$ ", (total + imposto):2:2)
+
 fimalgoritmo
